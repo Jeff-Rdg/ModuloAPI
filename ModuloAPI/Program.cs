@@ -1,6 +1,7 @@
 using ModuloAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using ModuloAPI.services;
+using ModuloAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // serviço de conexão com o banco de dados
 builder.Services.AddDbContext<ContactContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("default")));
 //Injeção de dependencia
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IContactService, ContactService>();
 
 builder.Services.AddControllers();

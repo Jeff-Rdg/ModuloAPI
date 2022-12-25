@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using ModuloAPI.Models;
 using ModuloAPI.services;
 
@@ -15,6 +16,12 @@ namespace ModuloAPI.Controllers
         {
             _contactService = contactService;
         }
+        [HttpPost]
+        public async Task<ActionResult<Contact>> CreateContact(Contact contact)
+        {
+            var resource = await _contactService.CreateContact(contact);
+            return Ok(resource);
+        }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
@@ -22,5 +29,6 @@ namespace ModuloAPI.Controllers
             var contacts = await _contactService.GetContacts();
             return Ok(contacts);
         }
+
     }
 }
