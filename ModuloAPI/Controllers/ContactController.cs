@@ -21,6 +21,7 @@ namespace ModuloAPI.Controllers
         {
             var resource = await _contactService.CreateContact(contact);
             return Ok(resource);
+            // CreatedAtAction(nameof(GetContactById), new {id = contact.Id}, contact);
         }
 
         [HttpGet]
@@ -30,5 +31,12 @@ namespace ModuloAPI.Controllers
             return Ok(contacts);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Contact>> GetContactById(int id)
+        {
+            var contact = await _contactService.GetContactById(id);
+            return Ok(contact);
+
+        }
     }
 }
