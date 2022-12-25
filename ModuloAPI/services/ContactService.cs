@@ -45,8 +45,8 @@ namespace ModuloAPI.services
 
         public async Task<Contact> UpdateContact(Contact contact, int id)
         {
-            var contactUpd = await _contactRepository.UpdateContact(contact, id);
-            return contactUpd;
+            var contactUpdate = await _contactRepository.UpdateContact(contact, id);
+            return contactUpdate;
         }
 
         public async Task<bool> DeleteContact(int id)
