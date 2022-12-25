@@ -44,7 +44,19 @@ namespace ModuloAPI.Controllers
             return Ok(result);
         }
 
-
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Contact>> DeleteContact(int id)
+        {
+            var result = await _contactService.DeleteContact(id);
+            if (result)
+            {
+                return Ok($"Contato com id {id} deletado com sucesso!");
+            }
+            else
+            {
+                return BadRequest("Houve um problema.");
+            }
+        }
 
     }
 }
